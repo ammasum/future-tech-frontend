@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Future Tech Frontend",
-  description: "Next.js 16.2 project configured with Tailwind CSS 4.2.2",
+  title: {
+    default: "X-prox Telecom",
+    template: "%s | X-prox Telecom",
+  },
+  description:
+    "Telecom website foundation for services, equipment visibility, and live project tracking.",
 };
 
 export default function RootLayout({
@@ -13,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="relative min-h-screen">{children}</div>
+      </body>
     </html>
   );
 }
