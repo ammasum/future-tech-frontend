@@ -95,7 +95,10 @@ export function SiteFooter() {
           <p>
             © {year} {siteConfig.name}. All rights reserved.
           </p>
-          <p>Step 2 foundation: shared navigation and footer are now live.</p>
+          <p>
+            Reliable connectivity for business, residential, and project-based
+            deployments.
+          </p>
         </div>
       </div>
     </footer>
