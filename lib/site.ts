@@ -18,6 +18,12 @@ export const siteConfig = {
   tagline: "Network design, setup, and maintenance for modern spaces.",
   summary:
     "A multi-page telecom platform for services, equipment visibility, and live project transparency.",
+  contact: {
+    address: "Sylhet, Bangladesh",
+    email: "hello@xproxtelecom.com",
+    phoneLabel: "+880 1712 000 000",
+    phoneHref: "tel:+8801712000000",
+  },
 };
 
 export const primaryRoutes: SiteRouteDefinition[] = [
