@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { primaryRoutes, siteConfig } from "@/lib/site";
+import type { SiteConfig, SiteRouteDefinition } from "@/lib/site";
+
 import { cn } from "@/lib/utils";
 
 function isActiveRoute(pathname: string, href: string) {
@@ -15,7 +16,12 @@ function isActiveRoute(pathname: string, href: string) {
   return pathname.startsWith(href);
 }
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  primaryRoutes: SiteRouteDefinition[];
+  siteConfig: SiteConfig;
+};
+
+export function SiteHeader({ primaryRoutes, siteConfig }: SiteHeaderProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 

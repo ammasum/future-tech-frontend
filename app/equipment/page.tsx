@@ -3,18 +3,18 @@ import Link from "next/link";
 
 import { EquipmentCard } from "@/components/equipment/equipment-card";
 import { PageSection, PageShell } from "@/components/site/page-shell";
-import {
-  equipmentCategories,
-  equipmentItems,
-  promotionalOffer,
-} from "@/lib/equipment";
-import { siteConfig } from "@/lib/site";
+import { getEquipmentPageContent } from "@/lib/site-api";
 
 export const metadata: Metadata = {
   title: "Equipment",
 };
 
-export default function EquipmentPage() {
+export const dynamic = "force-dynamic";
+
+export default async function EquipmentPage() {
+  const { siteConfig, categories, items, promotionalOffer } =
+    await getEquipmentPageContent();
+
   return (
     <PageShell
       eyebrow="Hardware catalog"
@@ -27,8 +27,8 @@ export default function EquipmentPage() {
               Catalog snapshot
             </p>
             <p className="mt-2 text-sm text-site-muted">
-              {equipmentItems.length} mock items across{" "}
-              {equipmentCategories.length} telecom hardware categories.
+              {items.length} mock items across {categories.length} telecom
+              hardware categories.
             </p>
           </div>
 
@@ -71,8 +71,8 @@ export default function EquipmentPage() {
           description="The catalog is organized by routing, switching, fiber delivery, client handoff, cabling, and installation support so the relationship between services and hardware stays readable."
         >
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {equipmentCategories.map((category) => {
-              const itemCount = equipmentItems.filter(
+            {categories.map((category) => {
+              const itemCount = items.filter(
                 (item) => item.category === category.slug,
               ).length;
 
@@ -102,8 +102,8 @@ export default function EquipmentPage() {
           description="Every category is rendered from structured mock data so the page can move to backend-driven inventory without changing the overall layout."
         >
           <div className="grid gap-8">
-            {equipmentCategories.map((category) => {
-              const items = equipmentItems.filter(
+            {categories.map((category) => {
+              const categoryItems = items.filter(
                 (item) => item.category === category.slug,
               );
 
@@ -119,12 +119,13 @@ export default function EquipmentPage() {
                       </h2>
                     </div>
                     <p className="text-sm text-site-muted">
-                      {items.length} catalog item{items.length === 1 ? "" : "s"}
+                      {categoryItems.length} catalog item
+                      {categoryItems.length === 1 ? "" : "s"}
                     </p>
                   </div>
 
                   <div className="grid gap-4 lg:grid-cols-2">
-                    {items.map((item) => (
+                    {categoryItems.map((item) => (
                       <EquipmentCard
                         key={item.id}
                         item={item}

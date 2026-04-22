@@ -14,6 +14,12 @@ export type EquipmentItem = {
   specs: string[];
 };
 
+export type PromotionalOffer = {
+  title: string;
+  description: string;
+  highlights: string[];
+};
+
 export const equipmentCategories: EquipmentCategory[] = [
   {
     slug: "routers",
@@ -162,7 +168,7 @@ export const equipmentItems: EquipmentItem[] = [
   },
 ];
 
-export const promotionalOffer = {
+export const promotionalOffer: PromotionalOffer = {
   title: "Deployment bundle for new site launches",
   description:
     "A bundled starter stack for new office floors, apartment blocks, or temporary project sites that need routing, access switching, ONU handoff, and installation essentials in one procurement path.",

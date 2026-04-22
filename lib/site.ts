@@ -1,3 +1,17 @@
+export type SiteContact = {
+  address: string;
+  email: string;
+  phoneLabel: string;
+  phoneHref: string;
+};
+
+export type SiteConfig = {
+  name: string;
+  tagline: string;
+  summary: string;
+  contact: SiteContact;
+};
+
 export type RouteSection = {
   title: string;
   description: string;
@@ -13,7 +27,7 @@ export type SiteRouteDefinition = {
   sections: RouteSection[];
 };
 
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
   name: "X-prox Telecom",
   tagline: "Network design, setup, and maintenance for modern spaces.",
   summary:

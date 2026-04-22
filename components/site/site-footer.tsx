@@ -1,8 +1,13 @@
 import Link from "next/link";
 
-import { primaryRoutes, siteConfig } from "@/lib/site";
+import type { SiteConfig, SiteRouteDefinition } from "@/lib/site";
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  primaryRoutes: SiteRouteDefinition[];
+  siteConfig: SiteConfig;
+};
+
+export function SiteFooter({ primaryRoutes, siteConfig }: SiteFooterProps) {
   const year = new Date().getFullYear();
 
   return (
