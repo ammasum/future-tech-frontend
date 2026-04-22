@@ -6,6 +6,13 @@ import { getServicesPageContent } from "@/lib/site-api";
 
 export const metadata: Metadata = {
   title: "Services",
+  description:
+    "Explore X-prox Telecom networking services — Corporate & Business, Apartment & Standard, and Contractual deployment solutions tailored to your environment.",
+  openGraph: {
+    title: "Services | X-prox Telecom",
+    description:
+      "Networking solutions organized by deployment context — corporate offices, residential properties, and contractual project sites.",
+  },
 };
 
 export const dynamic = "force-dynamic";

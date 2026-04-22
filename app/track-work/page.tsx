@@ -20,6 +20,13 @@ function formatDateTime(value: string) {
 
 export const metadata: Metadata = {
   title: "Track Work",
+  description:
+    "Track active X-prox Telecom networking projects by ticket ID — monitor real-time delivery status from on-site through to completion.",
+  openGraph: {
+    title: "Track Work | X-prox Telecom",
+    description:
+      "Client-facing project tracking — search by ticket ID to view delivery stage, team assignment, and latest field updates.",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -40,7 +47,7 @@ export default async function TrackWorkPage({
     <PageShell
       eyebrow="Live project transparency"
       title="Track active networking work by ticket ID"
-      description="Clients can enter a ticket ID to review where a project stands, who is assigned, and what the latest field update says. This version is connected to the backend ticket lookup endpoint and keeps the status flow aligned with the proposal."
+      description="Enter your ticket ID to review where a project stands, who is assigned, and what the latest field update says. Ticket data is retrieved from the live backend system."
       aside={
         <div className="space-y-4">
           <div>

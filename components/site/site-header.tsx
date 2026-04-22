@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { getClientSession } from "@/lib/client-session";
 import type { SiteConfig, SiteRouteDefinition } from "@/lib/site";
 
 import { cn } from "@/lib/utils";
@@ -24,9 +25,11 @@ type SiteHeaderProps = {
 export function SiteHeader({ primaryRoutes, siteConfig }: SiteHeaderProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     setIsOpen(false);
+    setIsLoggedIn(getClientSession() !== null);
   }, [pathname]);
 
   return (
@@ -79,10 +82,10 @@ export function SiteHeader({ primaryRoutes, siteConfig }: SiteHeaderProps) {
               Track work
             </Link>
             <Link
-              href="/login"
+              href={isLoggedIn ? "/dashboard" : "/login"}
               className="rounded-full bg-site-fg px-4 py-2 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
             >
-              Client login
+              {isLoggedIn ? "Dashboard" : "Client login"}
             </Link>
           </div>
 
@@ -149,10 +152,10 @@ export function SiteHeader({ primaryRoutes, siteConfig }: SiteHeaderProps) {
                 Track work
               </Link>
               <Link
-                href="/login"
+                href={isLoggedIn ? "/dashboard" : "/login"}
                 className="rounded-[1.2rem] bg-site-fg px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-site-accent-strong"
               >
-                Client login
+                {isLoggedIn ? "Dashboard" : "Client login"}
               </Link>
             </div>
           </div>

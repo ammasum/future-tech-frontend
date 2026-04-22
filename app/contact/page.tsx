@@ -6,6 +6,13 @@ import { getContactOverview } from "@/lib/site-api";
 
 export const metadata: Metadata = {
   title: "Contact & Review",
+  description:
+    "Get in touch with X-prox Telecom — office location, contact details, certifications, partner logos, and client reviews for telecom infrastructure services.",
+  openGraph: {
+    title: "Contact & Review | X-prox Telecom",
+    description:
+      "Office details, inquiry form, certificates, partner logos, and client feedback for X-prox Telecom services.",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -17,7 +24,7 @@ export default async function ContactPage() {
     <PageShell
       eyebrow="Contact & credibility"
       title="Location, contact details, authority signals, and client feedback"
-      description="This page brings the conversion and trust layer together: office contact details, review content, partnership signals, and a backend-connected inquiry form for project discussions."
+      description="Office contact details, review content, partnership signals, and an inquiry form for project discussions — all connected to the backend."
       aside={
         <div className="space-y-4">
           <div>

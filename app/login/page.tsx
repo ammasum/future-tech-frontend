@@ -23,7 +23,14 @@ const portalBenefits = [
 ];
 
 export const metadata: Metadata = {
-  title: "Login",
+  title: "Client Login",
+  description:
+    "Sign in to your X-prox Telecom client portal, create a new account, or recover your passcode for project access.",
+  openGraph: {
+    title: "Client Login | X-prox Telecom",
+    description:
+      "Secure client portal access — sign in, onboard, or recover your passcode.",
+  },
 };
 
 export default function LoginPage() {
@@ -31,7 +38,7 @@ export default function LoginPage() {
     <PageShell
       eyebrow="Client portal"
       title="Secure client access for sign-in, onboarding, and recovery"
-      description="This page now exposes the client-portal flows described in the proposal. The forms are connected to backend API endpoints for sign-in, account creation, and passcode recovery so the UI is no longer just a placeholder."
+      description="Use the client portal to sign in to your account, create a new portal record, or recover your passcode. All forms are connected to the live backend."
       aside={
         <div className="space-y-4">
           <div>
@@ -61,7 +68,7 @@ export default function LoginPage() {
         <PageSection
           eyebrow="Portal access"
           title="Use the backend-connected client forms"
-          description="Switch between sign-in, onboarding, and recovery. Each form submits to the backend client-portal API."
+          description="Switch between sign-in, onboarding, and recovery. Each form connects to the backend client-portal API."
         >
           <ClientPortalPanel />
         </PageSection>
@@ -70,7 +77,7 @@ export default function LoginPage() {
           <PageSection
             eyebrow="Demo credentials"
             title="Try the portal with seeded accounts"
-            description="These demo identities are useful for testing the prototype sign-in flow after running the backend."
+            description="These demo identities can be used to test the sign-in flow with the backend."
           >
             <div className="grid gap-4">
               {demoAccounts.map((account) => (
@@ -95,21 +102,22 @@ export default function LoginPage() {
           </PageSection>
 
           <PageSection
-            eyebrow="Security note"
-            title="Prototype backend behavior for this phase"
-            description="The Step 7 goal is to make the portal real enough to test. The next data-model phase will formalize storage, schema, and stronger persistence."
+            eyebrow="Portal features"
+            title="What you can do from the client portal"
+            description="The portal provides secure access to your account, project tracking, and support resources."
           >
             <div className="grid gap-3">
               <article className="rounded-[1.2rem] border border-site-line bg-site-surface-strong p-4 text-sm leading-6 text-site-muted">
-                New registrations are accepted by the backend and added to the
-                current portal data source.
+                Sign in with your email or phone and passcode to access your
+                personalized dashboard with project tickets.
               </article>
               <article className="rounded-[1.2rem] border border-site-line bg-site-surface-strong p-4 text-sm leading-6 text-site-muted">
-                Recovery returns a backend-generated success message so the UI
-                can show the intended next step.
+                New clients can register through the onboarding form to create
+                their portal account.
               </article>
               <article className="rounded-[1.2rem] border border-site-line bg-site-surface-strong p-4 text-sm leading-6 text-site-muted">
-                Step 9 will harden this with formal models and schema work.
+                Use the recovery flow if you need to reset your passcode and
+                regain access to your account.
               </article>
             </div>
           </PageSection>

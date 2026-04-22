@@ -1,6 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+import { setClientSession, type ClientSession } from "@/lib/client-session";
 
 type PortalMode = "signin" | "register" | "recover";
 
@@ -21,6 +24,7 @@ const panelModes: Array<{ id: PortalMode; label: string }> = [
 ];
 
 export function ClientPortalPanel() {
+  const router = useRouter();
   const [mode, setMode] = useState<PortalMode>("signin");
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const [pendingMode, setPendingMode] = useState<PortalMode | null>(null);
@@ -107,23 +111,18 @@ export function ClientPortalPanel() {
                 passcode: formData.get("passcode"),
               },
               (data) => {
-                const account = data as {
-                  name: string;
-                  email: string;
-                  phone: string;
-                  company: string;
-                };
+                const account = data as ClientSession;
+
+                setClientSession(account);
+                router.push("/dashboard");
 
                 return {
                   tone: "success",
                   title: "Sign-in accepted",
-                  body:
-                    "The backend accepted the client credentials for this prototype flow.",
+                  body: "Redirecting to your dashboard...",
                   details: [
                     `Client: ${account.name}`,
                     `Company: ${account.company}`,
-                    `Email: ${account.email}`,
-                    `Phone: ${account.phone}`,
                   ],
                 };
               },
@@ -177,21 +176,18 @@ export function ClientPortalPanel() {
                 passcode: formData.get("passcode"),
               },
               (data) => {
-                const account = data as {
-                  name: string;
-                  email: string;
-                  phone: string;
-                };
+                const account = data as ClientSession;
+
+                setClientSession(account);
+                router.push("/dashboard");
 
                 return {
                   tone: "success",
-                  title: "Onboarding request stored",
-                  body:
-                    "The backend created a prototype client account for this portal flow.",
+                  title: "Account created",
+                  body: "Redirecting to your dashboard...",
                   details: [
                     `Client: ${account.name}`,
                     `Email: ${account.email}`,
-                    `Phone: ${account.phone}`,
                   ],
                 };
               },

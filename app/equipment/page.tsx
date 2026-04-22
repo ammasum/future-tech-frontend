@@ -7,6 +7,13 @@ import { getEquipmentPageContent } from "@/lib/site-api";
 
 export const metadata: Metadata = {
   title: "Equipment",
+  description:
+    "Browse X-prox Telecom hardware catalog — routers, switches, OLTs, servers, ONUs, cables, and deployment accessories for enterprise and residential networking.",
+  openGraph: {
+    title: "Equipment Catalog | X-prox Telecom",
+    description:
+      "Telecom hardware and infrastructure equipment organized by deployment role — routing, switching, fiber delivery, and installation support.",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -19,7 +26,7 @@ export default async function EquipmentPage() {
     <PageShell
       eyebrow="Hardware catalog"
       title="The equipment stack behind X-prox Telecom deployments"
-      description="This catalog introduces the core hardware and installation components used across business, residential, and project-based service delivery. The data is structured as mock inventory for now so it can be replaced later with API-backed catalog data."
+      description="This catalog introduces the core hardware and installation components used across business, residential, and project-based service delivery. Equipment data is loaded from the backend API and organized by infrastructure role."
       aside={
         <div className="space-y-4">
           <div>
@@ -98,8 +105,8 @@ export default async function EquipmentPage() {
 
         <PageSection
           eyebrow="Catalog"
-          title="Mock equipment inventory for later API replacement"
-          description="Every category is rendered from structured mock data so the page can move to backend-driven inventory without changing the overall layout."
+          title="Equipment inventory by category"
+          description="Every category is rendered from the backend equipment catalog, organized by deployment role and infrastructure layer."
         >
           <div className="grid gap-8">
             {categories.map((category) => {
