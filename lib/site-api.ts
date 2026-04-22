@@ -14,6 +14,12 @@ import {
   type SiteConfig,
   type SiteRouteDefinition,
 } from "./site";
+import {
+  workTickets,
+  workTrackingStatuses,
+  type WorkTicket,
+  type WorkTrackingStatus,
+} from "./work-tracking";
 
 type ApiEnvelope<T> = {
   data: T;
@@ -31,6 +37,10 @@ export type EquipmentPageContent = {
   promotionalOffer: PromotionalOffer;
 };
 
+export type WorkTrackingOverview = {
+  statuses: WorkTrackingStatus[];
+};
+
 const fallbackSiteMeta: SiteMeta = {
   siteConfig,
   primaryRoutes,
@@ -41,6 +51,10 @@ const fallbackEquipmentPageContent: EquipmentPageContent = {
   categories: equipmentCategories,
   items: equipmentItems,
   promotionalOffer,
+};
+
+const fallbackWorkTrackingOverview: WorkTrackingOverview = {
+  statuses: [...workTrackingStatuses],
 };
 
 const apiBaseUrl =
@@ -81,4 +95,48 @@ export function getServicesPageContent() {
 
 export function getEquipmentPageContent() {
   return fetchFromSiteApi("/site/equipment", fallbackEquipmentPageContent);
+}
+
+export function getWorkTrackingOverview() {
+  return fetchFromSiteApi(
+    "/work-tracking/statuses",
+    fallbackWorkTrackingOverview.statuses,
+  ).then((statuses) => ({ statuses }));
+}
+
+export async function getWorkTicket(ticketId: string) {
+  const normalizedTicketId = ticketId.trim().toUpperCase();
+
+  if (!normalizedTicketId) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(
+      `${apiBaseUrl}/work-tracking/${encodeURIComponent(normalizedTicketId)}`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (response.status === 404) {
+      return null;
+    }
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const payload = (await response.json()) as ApiEnvelope<WorkTicket>;
+
+    return payload.data;
+  } catch (error) {
+    console.error("Failed to fetch work ticket from site API", error);
+
+    return (
+      workTickets.find(
+        (ticket) => ticket.ticketId.toUpperCase() === normalizedTicketId,
+      ) ?? null
+    );
+  }
 }
