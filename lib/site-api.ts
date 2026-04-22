@@ -1,4 +1,8 @@
 import {
+  contactOverview,
+  type ContactOverview,
+} from "./contact-review";
+import {
   equipmentCategories,
   equipmentItems,
   promotionalOffer,
@@ -95,6 +99,10 @@ export function getServicesPageContent() {
 
 export function getEquipmentPageContent() {
   return fetchFromSiteApi("/site/equipment", fallbackEquipmentPageContent);
+}
+
+export function getContactOverview() {
+  return fetchFromSiteApi("/contact/overview", contactOverview);
 }
 
 export function getWorkTrackingOverview() {
