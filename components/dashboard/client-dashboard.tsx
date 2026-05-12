@@ -129,7 +129,7 @@ export function ClientDashboard() {
               setLoading(true);
               void loadDashboard(session.id);
             }}
-            className="inline-flex items-center justify-center rounded-full bg-site-fg px-5 py-3 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
+            className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
           >
             Retry
           </button>
@@ -285,7 +285,7 @@ export function ClientDashboard() {
         </Link>
         <Link
           href="/contact"
-          className="inline-flex items-center justify-center rounded-full bg-site-fg px-5 py-3 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
+          className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
         >
           Contact support
         </Link>

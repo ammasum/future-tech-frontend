@@ -75,15 +75,10 @@ export function SiteHeader({ primaryRoutes, siteConfig }: SiteHeaderProps) {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Link
-              href="/track-work"
-              className="rounded-full border border-site-line bg-site-surface-strong px-4 py-2 text-sm font-medium text-site-fg transition hover:border-site-accent/40 hover:text-site-accent-strong"
-            >
-              Track work
-            </Link>
+         
             <Link
               href={isLoggedIn ? "/dashboard" : "/login"}
-              className="rounded-full bg-site-fg px-4 py-2 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-white transition hover:bg-site-accent-strong"
             >
               {isLoggedIn ? "Dashboard" : "Client login"}
             </Link>
