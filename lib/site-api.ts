@@ -64,7 +64,7 @@ const fallbackWorkTrackingOverview: WorkTrackingOverview = {
 const apiBaseUrl =
   process.env.SITE_API_BASE_URL ??
   process.env.NEXT_PUBLIC_SITE_API_BASE_URL ??
-  "http://127.0.0.1:4000/api/v1";
+  "http://68.183.83.151:3050/api/v1";
 
 async function fetchFromSiteApi<T>(path: string, fallback: T): Promise<T> {
   try {

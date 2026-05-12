@@ -35,7 +35,7 @@ type DashboardData = {
 };
 
 const apiBaseUrl =
-  process.env.NEXT_PUBLIC_SITE_API_BASE_URL ?? "http://127.0.0.1:4000/api/v1";
+  process.env.NEXT_PUBLIC_SITE_API_BASE_URL ?? "http://68.183.83.151:3050/api/v1";
 
 const statusColors: Record<string, string> = {
   "On-site": "bg-amber-100 text-amber-800 border-amber-200",
